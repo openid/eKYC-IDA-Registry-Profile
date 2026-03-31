@@ -99,18 +99,22 @@ Defines the specific legal or regulatory trust framework governing the verificat
 ### 6.2 Assurance Classifications (`assurance_classification`)
 Values are dependent on the associated `context_uri` and define the specific level of assurance achieved.
 
+### 6.2.1
+The `issuance_assurance_classification` parameter established the level of confidence established during the initial identity proofing abd onboarding phase by the credential issuer. This value asserts the rigor of the vetting process conducted prior to the binding and issuance of the digital credential.
+
+To ensure precise compliance mapping the values for this parameter are strictly dependent on the governing regulatory framework defined by the associated `context_uri`.
 | Associated Context | Parameter Value (`issuance_assurance_classification`) | Definition |
 | :--- | :--- | :--- |
 | **US** | `status:full_compliance:us:real_id` | Credential meets highest mandated federal standards. |
 | **EU** | `loa:high:eu:eidas` | Cryptographic hardware binding verified; equivalent to face-to-face. |
 | **AU** | `loa:substantial:au:tdif` | Strong authentication, but lower initial proofing requirements. |
 | **AU** | `ip:3:au:tdif` | Identity Proofing Level 3 (High Confidence) under AU TDIF. |
-| **NZ**`|`level:high:nz:distf` | High assurance identity proofing under NZ DISTF. |
+| **NZ**`| `level:high:nz:distf` | High assurance identity proofing under NZ DISTF. |
 
-### 6.3 Wallet Assurance Classification (`wallet_assurance_classification`) 
+### 6.2.2 Wallet Assurance Classification (`wallet_assurance_classification`) 
 Values are dependent on the associated `context_uri` and define the specific security, cryptographic binding, and certification level of the digital wallet storing and presenting the credential.
 
-| Associated Context | Parameter Value (`issuance_assurance_classification`) | Definition |
+| Associated Context | Parameter Value (`wallet_assurance_calssification` | Definition |
 | :--- | :--- | :--- |
 | **US** | `storage:hardware_backed` | Credential keys are bound to a device-native secure hardware enclave (e.g. Secure Element), aligning with ISO mDL requirements.|
 | **EU** | `wallet:wsce_certified` | Wallet operates in a certified Wallet Secure Cryptographic Environment (WSCE) meeting high EUDI Wallet security requirements. |
@@ -118,10 +122,10 @@ Values are dependent on the associated `context_uri` and define the specific sec
 | **NZ** | `storage:secure_zone` | Keys are protected by a mobile device hardware-backed keystore in compliance with DISTF technical standards. |
 | **Global** | `aal:3` | Authenticator Assurance Level 3 (NIST), requiring hardware-based cryptographic proof of possesion and strong resistance to verifier impersonation. |
 
-### 6.4 Audience Assurance Classification (`audience_assurance_classification`) 
-Values are dependent on the associated `context_uri` and define the trust, vetting, or acceditation status of the (Relying Party) requesting the data.
+### 6.2.3 Audience Assurance Classification (`audience_assurance_classification`) 
+Values are dependent on the associated `context_uri` and define the specific trust, vetting, or acceditation status of the (Relying Party) requesting the data.
 
-| Associated Context | Parameter Value (`issuance_assurance_classification`) | Definition |
+| Associated Context | Parameter Value (`audience_assurance_classification`) | Definition |
 | :--- | :--- | :--- |
 | **US** | `verifier:federally_recognized` |Relying Party is a vetted federal or state agency with authorization to request high-assurance identity data.|
 | **EU** | `rp:certified` | Verifier is registered, cryptographically authenticated, and authorized to request specific data under the eIDAS trust list |
@@ -129,7 +133,7 @@ Values are dependent on the associated `context_uri` and define the trust, vetti
 | **NZ** | `rp:trusted_participant` | Verifier is an officially approved and onboarded participant within the New Zealand DISTF ecosystem. |
 | **Global** | `verifier: mutually_authenticated` | verifier identity abd authorization have been established via a globally recognized trust registry or X.509 PKI infrastructure. |
 
-### 6.5 National Identifier Types (`identifier_type`)
+### 6.2.4 National Identifier Types (`identifier_type`)
 Standardized values for the `national_identifier_match` object.
 
 | Jurisdiction | Parameter Value (`identifier_type`) | Jurisdictional Target |
@@ -141,7 +145,7 @@ Standardized values for the `national_identifier_match` object.
 | **AU** | `crn` | Customer Reference Number (Centrelink) |
 | **NZ** | `ird` | Inland Revenue Department Number |
 
-### 6.6 Authoritative Organizations (`organization`)
+### 6.2.5 Authoritative Organizations (`organization`)
 Specifies the entity that performed the freshness or revocation check.
 
 | Jurisdiction | Parameter Value (`organization`) | Entity Type / Example |
