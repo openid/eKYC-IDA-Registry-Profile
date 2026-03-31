@@ -172,8 +172,7 @@ This payload demonstrates the assurance schema acting as a pure metadata envelop
   "_comment": "FORMAT-AGNOSTIC EKYC METADATA ENVELOPE",
   "verified_assurance": {
     "verification": {
-      "trust_framework": "urn:assurance:global:iso",
-      "assurance_level": "loa-3",
+      "trust_framework": "urn:openid:assurance:global:iso",
       
       "_comment": "TRANSACTION CONTEXT EXTENSIONS",
       "account_intent": "high_value_wire_transfer",
@@ -182,9 +181,12 @@ This payload demonstrates the assurance schema acting as a pure metadata envelop
       "assurance_details": [
         {
           "_comment": "JURISDICTION-AGNOSTIC ASSURANCE ROUTING",
-          "assurance_type": "identity_proofing",
-          "context_uri": "urn:assurance:au:tdif", 
-          "assurance_classification": "ip:3" 
+          "context_uri": "urn:openid:assurance:au:tdif", 
+          
+          "_comment": "TRI-PARTITE ASSURANCE CLASSIFICATIONS (Ref: Section 6)",
+          "issuance_assurance_classification": "ip:3",
+          "wallet_assurance_classification": "cl:3",
+          "audience_assurance_classification": "rp:accredited"
         }
       ],
       "evidence": [
@@ -192,6 +194,7 @@ This payload demonstrates the assurance schema acting as a pure metadata envelop
           "type": "document",
           "evidence_format": "application/cbor",
           "revocation_freshness_check": "2026-03-03T19:24:18Z",
+          "authoritative_organization": "urn:issuing_authority:au:dvs",
           "payload": "<Base64 encoded raw MSO/mdoc data block>"
         }
       ]
@@ -225,3 +228,15 @@ JSON
     }
   ]
 }
+ 
+
+
+
+
+
+
+
+
+
+
+ 
