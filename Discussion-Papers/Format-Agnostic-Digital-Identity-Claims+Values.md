@@ -100,7 +100,7 @@ Defines the specific legal or regulatory trust framework governing the verificat
 Values are dependent on the associated `context_uri` and define the specific level of assurance achieved.
 
 ### 6.2.1
-The `issuance_assurance_classification` parameter established the level of confidence established during the initial identity proofing abd onboarding phase by the credential issuer. This value asserts the rigor of the vetting process conducted prior to the binding and issuance of the digital credential.
+The `issuance_assurance_classification` parameter established the level of confidence established during the initial identity proofing and onboarding phase by the credential issuer. This value asserts the rigor of the vetting process conducted prior to the binding and issuance of the digital credential.
 
 To ensure precise compliance mapping the values for this parameter are strictly dependent on the governing regulatory framework defined by the associated `context_uri`.
 | Associated Context | Parameter Value (`issuance_assurance_classification`) | Definition |
