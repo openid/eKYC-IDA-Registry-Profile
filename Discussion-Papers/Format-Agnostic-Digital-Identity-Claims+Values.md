@@ -85,7 +85,7 @@ Implementations SHOULD mandate the inclusion of OS-level or hardware-backed Wall
 ## 6. Standardized Parameter Value Registry (Normative)
 To enable true jurisdictional agility, implementations MUST map local compliance terminology to standardized URNs and enumerated values. This ensures a Verifier’s policy engine can programmatically evaluate risk without needing to parse bespoke strings from every global issuing authority.
 
-### 6.1 Assurance Context URIs (`context_uri`)
+### 6.1 Assurance Context URIs (`context_uri`) EXAMPLES
 Defines the specific legal or regulatory trust framework governing the verification event.
 
 | Jurisdiction | Parameter Value (`context_uri`) | Governing Framework | Description |
@@ -107,13 +107,25 @@ Values are dependent on the associated `context_uri` and define the specific lev
 | `*:tdif` | `ip:3` | Identity Proofing Level 3 (High Confidence) under AU TDIF. |
 | `*:distf` | `level:high` | High assurance identity proofing under NZ DISTF. |
 
-| Associated Context | Parameter Value (`wallet_assurance_classification`) | Definition |
-TBD
+### 6.3 Wallet Assurance Classification (`wallet_assurance_classification`) 
+Values are dependent on the associated `context_uri` and define the specific security, cryptographic binding, and certification level of the digital wallet storing and presenting the credential.
+| :--- | :--- | :--- |
+| `*:real_id` | `storage:hardware_backed` | Credential keys are bound to a device-native secure hardware enclave (e.g. Secure Element), aligning with ISO mDL requirements.|
+| `*:eidas` | `wallet:wsce_certified` | Wallet operates in a certified Wallet Secure Cryptographic Environment (WSCE) meeting high EUDI Wallet security requirements. |
+| `*:tdif` | `cl:3` | Credential Level 3 (High) under AU TDIF, requring cryptographic hardware binding and device-level security. |
+| `*:distf` | `storage:secure_zone` | Keys are protected by a mobile device hardware-backed keystore in compliance with DISTF technical standards. |
+| `*:iso` | `aal:3` | Authenticator Assurance Level 3 (NIST), requiring hardware-based cryptographic proof of possesion and strong resistance to verifier impersonation. |
 
-| Associated Context | Parameter Value (`audience_assurance_classification`) | Definition |
-TBD
+### 6.4 Audience Assurance Classification (`audience_assurance_classification`) 
+Values are dependent on the associated `context_uri` and define the trust, vetting, or acceditation status of the (Relying Party) requesting the data.
+| :--- | :--- | :--- |
+| `*:real_id` | `verifier:federally_recognized` |Relying Party is a vetted federal or state agency with authorization to request high-assurance identity data.|
+| `*:eidas` | `rp:certified` | Verifier is registered, cryptographically authenticated, and authorized to request specific data under the eIDAS trust list |
+| `*:tdif` | `rp:accredited` | Relying Party has undergone formal accreditation and compliance auditing under the Australian TDIF. |
+| `*:distf` | `rp:trusted_participant` | Verifier is an officially approved and onboarded participant within the New Zealand DISTF ecosystem. |
+| `*:iso` | `verifier: mutually_authenticated` | verifier identity abd authorization have been established via a globally recognized trust registry or X.509 PKI infrastructure. |
 
-### 6.3 National Identifier Types (`identifier_type`)
+### 6.5 National Identifier Types (`identifier_type`)
 Standardized values for the `national_identifier_match` object.
 
 | Jurisdiction | Parameter Value (`identifier_type`) | Jurisdictional Target |
@@ -125,7 +137,7 @@ Standardized values for the `national_identifier_match` object.
 | **AU** | `crn` | Customer Reference Number (Centrelink) |
 | **NZ** | `ird` | Inland Revenue Department Number |
 
-### 6.4 Authoritative Organizations (`organization`)
+### 6.6 Authoritative Organizations (`organization`)
 Specifies the entity that performed the freshness or revocation check.
 
 | Jurisdiction | Parameter Value (`organization`) | Entity Type / Example |
