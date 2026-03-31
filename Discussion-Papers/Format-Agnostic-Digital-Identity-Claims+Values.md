@@ -213,7 +213,7 @@ The schema does not replace the CBOR data; rather, it acts as a routing wrapper 
 Conformance Implementation Example: When a Verifier's policy engine processes an mdoc, the resulting extracted evidence object MUST reflect the following structure. The payload claim securely transports the raw evidence to satisfy compliance without forcing the JSON processor to decode the entire CBOR tree immediately.
 
 JSON
-
+```
 {
   "evidence": [
     {
@@ -229,9 +229,7 @@ JSON
   ]
 }
  
-
-
-
+```
 
 
 
