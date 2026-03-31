@@ -109,6 +109,8 @@ Values are dependent on the associated `context_uri` and define the specific lev
 
 ### 6.3 Wallet Assurance Classification (`wallet_assurance_classification`) 
 Values are dependent on the associated `context_uri` and define the specific security, cryptographic binding, and certification level of the digital wallet storing and presenting the credential.
+
+| Associated Context | Parameter Value (`issuance_assurance_classification`) | Definition |
 | :--- | :--- | :--- |
 | **US** | `storage:hardware_backed` | Credential keys are bound to a device-native secure hardware enclave (e.g. Secure Element), aligning with ISO mDL requirements.|
 | **EU** | `wallet:wsce_certified` | Wallet operates in a certified Wallet Secure Cryptographic Environment (WSCE) meeting high EUDI Wallet security requirements. |
@@ -118,6 +120,8 @@ Values are dependent on the associated `context_uri` and define the specific sec
 
 ### 6.4 Audience Assurance Classification (`audience_assurance_classification`) 
 Values are dependent on the associated `context_uri` and define the trust, vetting, or acceditation status of the (Relying Party) requesting the data.
+
+| Associated Context | Parameter Value (`issuance_assurance_classification`) | Definition |
 | :--- | :--- | :--- |
 | **US** | `verifier:federally_recognized` |Relying Party is a vetted federal or state agency with authorization to request high-assurance identity data.|
 | **EU** | `rp:certified` | Verifier is registered, cryptographically authenticated, and authorized to request specific data under the eIDAS trust list |
