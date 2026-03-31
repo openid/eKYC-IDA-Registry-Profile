@@ -101,29 +101,29 @@ Values are dependent on the associated `context_uri` and define the specific lev
 
 | Associated Context | Parameter Value (`issuance_assurance_classification`) | Definition |
 | :--- | :--- | :--- |
-| `*:real_id` | `status:full_compliance` | Credential meets highest mandated federal standards. |
-| `*:eidas` | `loa:high` | Cryptographic hardware binding verified; equivalent to face-to-face. |
-| `*:eidas` | `loa:substantial` | Strong authentication, but lower initial proofing requirements. |
-| `*:tdif` | `ip:3` | Identity Proofing Level 3 (High Confidence) under AU TDIF. |
-| `*:distf` | `level:high` | High assurance identity proofing under NZ DISTF. |
+| **US** | `status:full_compliance:us:real_id` | Credential meets highest mandated federal standards. |
+| **EU** | `loa:high:eu:eidas` | Cryptographic hardware binding verified; equivalent to face-to-face. |
+| **AU** | `loa:substantial:au:tdif` | Strong authentication, but lower initial proofing requirements. |
+| **AU** | `ip:3:au:tdif` | Identity Proofing Level 3 (High Confidence) under AU TDIF. |
+| **NZ**`|`level:high:nz:distf` | High assurance identity proofing under NZ DISTF. |
 
 ### 6.3 Wallet Assurance Classification (`wallet_assurance_classification`) 
 Values are dependent on the associated `context_uri` and define the specific security, cryptographic binding, and certification level of the digital wallet storing and presenting the credential.
 | :--- | :--- | :--- |
-| `*:real_id` | `storage:hardware_backed` | Credential keys are bound to a device-native secure hardware enclave (e.g. Secure Element), aligning with ISO mDL requirements.|
-| `*:eidas` | `wallet:wsce_certified` | Wallet operates in a certified Wallet Secure Cryptographic Environment (WSCE) meeting high EUDI Wallet security requirements. |
-| `*:tdif` | `cl:3` | Credential Level 3 (High) under AU TDIF, requring cryptographic hardware binding and device-level security. |
-| `*:distf` | `storage:secure_zone` | Keys are protected by a mobile device hardware-backed keystore in compliance with DISTF technical standards. |
-| `*:iso` | `aal:3` | Authenticator Assurance Level 3 (NIST), requiring hardware-based cryptographic proof of possesion and strong resistance to verifier impersonation. |
+| **US** | `storage:hardware_backed` | Credential keys are bound to a device-native secure hardware enclave (e.g. Secure Element), aligning with ISO mDL requirements.|
+| **EU** | `wallet:wsce_certified` | Wallet operates in a certified Wallet Secure Cryptographic Environment (WSCE) meeting high EUDI Wallet security requirements. |
+| **AU** | `cl:3` | Credential Level 3 (High) under AU TDIF, requring cryptographic hardware binding and device-level security. |
+| **NZ** | `storage:secure_zone` | Keys are protected by a mobile device hardware-backed keystore in compliance with DISTF technical standards. |
+| **Global** | `aal:3` | Authenticator Assurance Level 3 (NIST), requiring hardware-based cryptographic proof of possesion and strong resistance to verifier impersonation. |
 
 ### 6.4 Audience Assurance Classification (`audience_assurance_classification`) 
 Values are dependent on the associated `context_uri` and define the trust, vetting, or acceditation status of the (Relying Party) requesting the data.
 | :--- | :--- | :--- |
-| `*:real_id` | `verifier:federally_recognized` |Relying Party is a vetted federal or state agency with authorization to request high-assurance identity data.|
-| `*:eidas` | `rp:certified` | Verifier is registered, cryptographically authenticated, and authorized to request specific data under the eIDAS trust list |
-| `*:tdif` | `rp:accredited` | Relying Party has undergone formal accreditation and compliance auditing under the Australian TDIF. |
-| `*:distf` | `rp:trusted_participant` | Verifier is an officially approved and onboarded participant within the New Zealand DISTF ecosystem. |
-| `*:iso` | `verifier: mutually_authenticated` | verifier identity abd authorization have been established via a globally recognized trust registry or X.509 PKI infrastructure. |
+| **US** | `verifier:federally_recognized` |Relying Party is a vetted federal or state agency with authorization to request high-assurance identity data.|
+| **EU** | `rp:certified` | Verifier is registered, cryptographically authenticated, and authorized to request specific data under the eIDAS trust list |
+| **AU** | `rp:accredited` | Relying Party has undergone formal accreditation and compliance auditing under the Australian TDIF. |
+| **NZ** | `rp:trusted_participant` | Verifier is an officially approved and onboarded participant within the New Zealand DISTF ecosystem. |
+| **Global** | `verifier: mutually_authenticated` | verifier identity abd authorization have been established via a globally recognized trust registry or X.509 PKI infrastructure. |
 
 ### 6.5 National Identifier Types (`identifier_type`)
 Standardized values for the `national_identifier_match` object.
