@@ -94,6 +94,80 @@ Cryptographic Intactness: The resulting binary artifact transmitted to the Relyi
 
 Privacy-Preserving Audit: This ensures the Relying Party persistently stores a defensible, verifiable artifact. It aligns with global data minimization mandates, satisfying both the privacy regulator and the compliance examiner simultaneously
 
+## Diagram 1: Format-Agnostic Presentation Flow (Sequence Diagram)
+
+This diagram illustrates how the architectural requirements (cryptographic holder binding, unaltered evidence payload, and status metadata) flow between the actors to satisfy the "Examiner Defense"
+
+sequenceDiagram
+    autonumber
+    participant RP as Relying Party (Verifier)
+    participant OP as OpenID Provider (Wallet)
+    participant TR as Trust Registry (VICAL)
+
+    Note over RP, TR: Phase 1: Request & Trust Establishment
+    RP->>OP: OIDC Request (verified_claims)
+    Note right of RP: Specifies required attributes & <br>status check ('essential': true)
+    RP->>TR: Resolve Issuer Public Keys (IACA)
+    
+    Note over OP: Phase 2: Native Evidence Assembly
+    OP->>OP: Execute Selective Disclosure
+    OP->>OP: Gather Native Cryptographic Payload (e.g., CBOR/SD-JWT)
+    OP->>OP: Assert Wallet & Device Assurance
+
+    Note over OP, RP: Phase 3: Transmission of Agnostic Wrapper
+    OP-->>RP: Return 'verified_claims' Object
+    Note left of OP: Includes 'format_binding', 'payload', <br>and 'status_metadata'
+
+    Note over RP: Phase 4: Zero-Trust Validation (Examiner Defense)
+    RP->>RP: 1. Validate Cryptographic 'payload' (Provenance)
+    RP->>RP: 2. Verify Device Binding (Holder Proof)
+    RP->>RP: 3. Evaluate 'status_metadata' (Freshness)
+    RP->>RP: 4. Log Immutable Artifact for Audit
+
+## Diagram 2: Extended Schema Architecture (Class Diagram)
+This diagram visually maps exactly how your proposed extension hooks into the existing verified_claims baseline structure. It highlights the net-new parameters proposed in Section 7.
+
+classDiagram
+    class verified_claims {
+        +Object verification
+        +Object claims
+    }
+
+    class verification {
+        +String trust_framework
+        +String format_binding [NEW]
+        +Array evidence
+        +Array assurance_details
+    }
+
+    class assurance_details {
+        +String issuance_assurance_classification
+        +String wallet_assurance_classification [NEW]
+    }
+
+    class evidence {
+        +String type
+        +String payload (Base64URL) [NEW]
+        +Object status_metadata [NEW]
+    }
+
+    class status_metadata {
+        +String revocation_freshness_check
+        +String authoritative_organization
+    }
+
+    verified_claims *-- verification : contains
+    verified_claims *-- claims : contains
+    verification *-- evidence : contains
+    verification *-- assurance_details : contains
+    evidence *-- status_metadata : contains
+
+    %% Styling to highlight the new extension parameters
+    style format_binding stroke:#10B981,stroke-width:2px
+    style wallet_assurance_classification stroke:#10B981,stroke-width:2px
+    style payload stroke:#10B981,stroke-width:2px
+    style status_metadata stroke:#10B981,stroke-width:2px
+
 ## 6. Standardized Parameter Value Registry (Normative)
 To enable true jurisdictional agility, implementations MUST map local compliance terminology to standardized URNs and enumerated values. This ensures a Verifier’s policy engine can programmatically evaluate risk without needing to parse bespoke strings from every global issuing authority.
 
