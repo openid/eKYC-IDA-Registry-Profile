@@ -83,6 +83,17 @@ While Pillar III establishes the cryptographic binding of the credential to a sp
 
 Implementations SHOULD mandate the inclusion of OS-level or hardware-backed Wallet Attestation (e.g., Apple App Attest, Android Play Integrity, or hardware keystore attestations) within the metadata envelope. This attestation mathematically proves that the wallet application is authentic, unmodified, and operating within a secure execution environment (such as a Trusted Execution Environment or Secure Enclave). The RP MUST validate this attestation against recognized publisher registries or policy thresholds before processing the underlying cryptographic payload, ensuring the zero-trust architecture extends to the edge device.
 
+## 5.3 Security Consideration: Selective Disclosure vs The Examiner Defense
+There is an inherent architectural tension between satisfying rigorous regulatory auditability (Pillar V) and enforcing strict data minimization and privacy principles. Relying Parties require mathematically intact, raw binary evidence to prove cryptographic provenance, which historically led to the over-collection of identity attributes.
+
+To resolve this tension and maintain jurisdiction-agnostic privacy compliance, implementations MUST strictly enforce Native Selective Disclosure prior to payload encapsulation.
+
+Wallet-Side Minimization: The credential holder's wallet MUST execute selective disclosure natively (e.g., generating a minimized DeviceResponse containing only the requested IssuerSignedItem elements in ISO 18013-5, or deriving a selective SD-JWT presentation) before the evidence is encoded and embedded into the payload claim.
+
+Cryptographic Intactness: The resulting binary artifact transmitted to the Relying Party contains only the specific attributes requested by the overarching schema (e.g., national_identifier_match), but it retains the issuer's detached cryptographic signatures proving those specific elements have not been altered.
+
+Privacy-Preserving Audit: This ensures the Relying Party persistently stores a defensible, verifiable artifact. It aligns with global data minimization mandates, satisfying both the privacy regulator and the compliance examiner simultaneously
+
 ## 6. Standardized Parameter Value Registry (Normative)
 To enable true jurisdictional agility, implementations MUST map local compliance terminology to standardized URNs and enumerated values. This ensures a Verifier’s policy engine can programmatically evaluate risk without needing to parse bespoke strings from every global issuing authority.
 
