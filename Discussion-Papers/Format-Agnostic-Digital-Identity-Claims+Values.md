@@ -84,7 +84,7 @@ While Pillar III establishes the cryptographic binding of the credential to a sp
 Implementations SHOULD mandate the inclusion of OS-level or hardware-backed Wallet Attestation (e.g., Apple App Attest, Android Play Integrity, or hardware keystore attestations) within the metadata envelope. This attestation mathematically proves that the wallet application is authentic, unmodified, and operating within a secure execution environment (such as a Trusted Execution Environment or Secure Enclave). The RP MUST validate this attestation against recognized publisher registries or policy thresholds before processing the underlying cryptographic payload, ensuring the zero-trust architecture extends to the edge device.
 
 ## 5.3 Security Consideration: Selective Disclosure vs The Examiner Defense
-There is an inherent architectural tension between satisfying rigorous regulatory auditability (Pillar V) and enforcing strict data minimization and privacy principles. Relying Parties require mathematically intact, raw binary evidence to prove cryptographic provenance, which historically led to the over-collection of identity attributes.
+There is an inherent architectural tension between satisfying rigorous regulatory auditability (Pillar V) and enforcing strict data minimization and privacy principles. Relying Parties require binary evidence to prove cryptographic provenance, which historically led to the over-collection of identity attributes.
 
 To resolve this tension and maintain jurisdiction-agnostic privacy compliance, implementations MUST strictly enforce Native Selective Disclosure prior to payload encapsulation.
 
