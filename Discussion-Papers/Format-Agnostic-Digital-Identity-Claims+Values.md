@@ -65,7 +65,7 @@ To enable global scalability, all jurisdictional parameters are abstracted using
 
 **Pillar IV: Freshness & Revocation**
 * **Requirement:** Ensure the identity has not been revoked, suspended, or altered ("Reasonable Belief”).
-* **Implementation:** Assert the `check_method` (e.g., a cryptographic Status List check or `"revocation_freshness_check”` from a wallet) and utilize standardized URNs for the `organization` serving as the authoritative registry for the authoritative status check.
+* **Implementation:** Assert the `check_method` (e.g., a cryptographic Status List check or `"revocation_freshness_check”` and `“revocation_check_method”` from a wallet) and utilize standardized URNs for the `organization` serving as the authoritative registry for the authoritative status check.
 
 **Pillar V: Data Lineage & Auditability (The Examiner Defense)**
 * **Requirement:** Reconstruct the complete identity event for regulatory recordkeeping.
@@ -140,7 +140,7 @@ To ensure precise compliance mapping the values for this parameter are strictly 
 ### 6.2.2 Wallet Assurance Classification (`wallet_assurance_classification`) 
 Values are dependent on the associated `context_uri` and define the specific security, cryptographic binding, and certification level of the digital wallet storing and presenting the credential.
 
-| Associated Context | Parameter Value (`wallet_assurance_calssification` | Definition |
+| Associated Context | Parameter Value (`wallet_assurance_classification` | Definition |
 | :--- | :--- | :--- |
 | **US** | `storage:hardware_backed` | Credential keys are bound to a device-native secure hardware enclave (e.g. Secure Element), aligning with ISO mDL requirements.|
 | **EU** | `wallet:wsce_certified` | Wallet operates in a certified Wallet Secure Cryptographic Environment (WSCE) meeting high EUDI Wallet security requirements. |
